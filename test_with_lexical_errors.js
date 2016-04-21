@@ -1,3 +1,3 @@
-var mexico  = america";
-var america = 7a;
-var canada = 6.;
+var mexico  = "america";
+var america = 7;
+var 6anada = 6;

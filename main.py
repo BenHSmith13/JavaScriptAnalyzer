@@ -14,7 +14,7 @@ class LexicalError(Exception):
     def __str__(self):
         return repr(self.value)
 
-
+#separate all chars
 def parse_file(f):
     lexemes = []
     with open(f, 'r') as in_file:
@@ -24,6 +24,7 @@ def parse_file(f):
                 # print (line_number, char_index, char)
     return lexemes
 
+#takes chars and builds them into "words" defined by a list of separators
 def build_words(chars, separators):
     words = []
     word = ""
@@ -38,6 +39,7 @@ def build_words(chars, separators):
             word += char[2]
     return words
 
+#assign each word a part of grammer
 def tokenize(words, key_words):
     tokens = []
     for word_tup in words:
@@ -51,40 +53,45 @@ def tokenize(words, key_words):
         elif word == "}":         tokens.append(("CLOSE_BLOCK", word, word_tup[1]))
         elif word == "[":         tokens.append(("OPEN_SUBSCRIPT", word, word_tup[1]))
         elif word == "]":         tokens.append(("CLOSE_SUBSCRIPT", word, word_tup[1]))
-        elif word in list("=!+=/*."): tokens.append(("OPERATOR", word, word_tup[1]))
+        elif word in "=!+-/*.":   tokens.append(("OPERATOR", word, word_tup[1]))
         else:
-            tokens.append(("IDENT", word, word_tup[1]))
+            refined_token = refiner_and_lexical_error_parser(("IDENT", word, word_tup[1]))
+            tokens.append(refined_token)
     return tokens
 
 # separate the literals and the identifiers: Built to handle strings, ints, boolean primative types
-def refiner_and_lexical_error_parser(tokens):
-    num_chars = list("0123456789")
-    refined_tokens = []
-    for token in tokens:
-        word = token[1]
-        if token[0] == "IDENT":
-            if "\"" in word or "'" in word:
-                if (word[0] == "\"" and word[-1] == "\"") or (word[0] == "'" and word[-1] == ""):
-                    refined_tokens.append(("STR_LITERAL", word, token[2]))
-                else:
-                    raise LexicalError("Lexical error at line: " + str(token[2]) + ", invalid string literal: " + word)
-            elif word[0] in num_chars:
-                #it is an int TODO: figure out floating points. Will need to look at build_words
-                check_valid_number(word, token[2])
-                refined_tokens.append(("INT_LITERAL", word, token[2]))
-            elif word == "true" or word == "false":
-                refined_tokens.append(("BOOL_LITERAL", word, token[2]))
+def refiner_and_lexical_error_parser(token):
+    num_chars = "0123456789"
+    word = token[1]
+    #only get the IDENT types, the others are what they are because their word matches something exactly already
+    if token[0] == "IDENT":
+        #handle strings
+        if "\"" in word or "'" in word:
+            if (word[0] == "\"" and word[-1] == "\"") or (word[0] == "'" and word[-1] == ""):
+                return ("STR_LITERAL", word, token[2])
             else:
-                refined_tokens.append(token)
+                raise LexicalError("Lexical error at line: " + str(token[2]) + ", invalid string literal: " + word)
+        #handle numbers, TODO: figure our floating point
+        elif word[0] in num_chars:
+            check_valid_number(word, token[2])
+            return ("INT_LITERAL", word, token[2])
+        #handle booleans
+        elif word == "true" or word == "false":
+            return ("BOOL_LITERAL", word, token[2])
+        #put everything else back the way it was because
         else:
-            refined_tokens.append(token)
+            return token
+    else:
+        return token
 
     return refined_tokens
+
 def check_valid_number(num, line):
-    invalid_chars = list("qwertyiop[]\\\{\}|asdfghjkl;:'\"zxcvbn,./<>?!@#$%^&*()-_=+")
+    invalid_chars = "qwertyiop[]\\\{\}|asdfghjkl;:'\"zxcvbn,./<>?!@#$%^&*()-_=+"
     for digit in num:
         if digit in invalid_chars:
             raise LexicalError("Lexical error at line: " + str(line) + ", invalid character in number: " + num)
+
 def main():
     separators = [" ", "\n", "(", ")", "{", "}", ".", ",", ":", "[", "]", ";", "=", "!", "+", "-", "/", "*"]
     keywords = ["var", "function", "if", "else", "break", "switch", "case", "return"]
@@ -93,7 +100,6 @@ def main():
         lexemes = parse_file(sys.argv[1])
         words   = build_words(lexemes, separators)
         tokens  = tokenize(words, keywords)
-        print words
         print tokens
     else:
         print('Error: missing parameter\n\t- please specify a file')
