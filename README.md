@@ -3,10 +3,10 @@
 ###########################
 #    Group Member Names
 ###########################
-  Aaron Light<br/>
-  Ben Smith<br/>
-  Joseph Ditton<br/>
-  Seth Bertlshofer<br/>
+  Aaron Light - A01185262<br/>
+  Ben Smith - A01208763<br/>
+  Joseph Ditton - A01249280<br/>
+  Seth Bertlshofer - A00933231<br/>
 
 ###############################
 #    software dependencies

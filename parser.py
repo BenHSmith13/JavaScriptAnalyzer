@@ -1,3 +1,8 @@
+# Aaron Light - A01185262
+# Ben Smith - A01208763
+# Joseph Ditton - A01249280
+# Seth Bertlshofer - A00933231
+
 separators = [" ", "\n", "(", ")", "{", "}", ".", ",", ":", "[", "]", ";", "=", "!", "+", "-", "/", "*"]
 
 
@@ -32,3 +37,8 @@ def build_words(chars):
         else:
             word += char[2]
     return words
+
+# Aaron Light - A01185262
+# Ben Smith - A01208763
+# Joseph Ditton - A01249280
+# Seth Bertlshofer - A00933231

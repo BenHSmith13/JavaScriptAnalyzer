@@ -1,8 +1,8 @@
 #!/usr/bin/python2.7
 
-# Aaron Light
-# Ben Smith
-# Joseph Ditton
+# Aaron Light - A01185262
+# Ben Smith - A01208763
+# Joseph Ditton - A01249280
 # Seth Bertlshofer - A00933231
 
 import sys
@@ -27,7 +27,7 @@ def main():
 if __name__ == "__main__":
     main()
 
-# Aaron Light
-# Ben Smith
-# Joseph Ditton
+# Aaron Light - A01185262
+# Ben Smith - A01208763
+# Joseph Ditton - A01249280
 # Seth Bertlshofer - A00933231
