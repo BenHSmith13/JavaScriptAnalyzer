@@ -12,7 +12,7 @@
 #    software dependencies
 ###############################
   python > ~2.7.\n
-  python sys library (import sys)
+  python sys library (import sys)\n
 
 #######################
 #    project status
@@ -21,4 +21,3 @@
   parser\n
   syntaxer\n
   tokenizer\n
-  
