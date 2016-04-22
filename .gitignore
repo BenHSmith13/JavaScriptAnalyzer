@@ -2,3 +2,6 @@
 .idea
 JavaScriptAnalyzer.iml
 *.pyc
+
+# Because we don't tolerate that kind of garbarge
+*.java
