@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-
 # Aaron Light
 # Ben Smith
 # Joseph Ditton
@@ -16,7 +14,8 @@ def main():
         lexemes = parser.parse_file(sys.argv[1])
         words = parser.build_words(lexemes)
         tokens = tokenizer.tokenize(words)
-        print tokens
+        for token in tokens:
+            print token
     else:
         print('Error: missing parameter\n\t- please specify a file')
 
