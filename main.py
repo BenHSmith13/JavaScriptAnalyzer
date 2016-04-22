@@ -18,7 +18,7 @@ def main():
         words = parser.build_words(lexemes)
         print words
         tokens = tokenizer.tokenize(words)
-        for token in tokens:
+        for token in tokens
             print(tokens)
         syntaxer.analyze(tokens)
     else:
