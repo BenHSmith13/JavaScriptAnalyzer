@@ -16,6 +16,7 @@ def main():
     if len(sys.argv) > 1:
         lexemes = parser.parse_file(sys.argv[1])
         words = parser.build_words(lexemes)
+        print words
         tokens = tokenizer.tokenize(words)
         for token in tokens:
             print(tokens)
