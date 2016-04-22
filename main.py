@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python2.7
 
 # Aaron Light
 # Ben Smith
@@ -9,6 +9,7 @@ import sys
 
 import parser
 import tokenizer
+import syntaxer  # Sytaxer, I hardly know her
 
 
 def main():
@@ -16,7 +17,9 @@ def main():
         lexemes = parser.parse_file(sys.argv[1])
         words = parser.build_words(lexemes)
         tokens = tokenizer.tokenize(words)
-        print tokens
+        for token in tokens:
+            print(tokens)
+        syntaxer.analyze(tokens)
     else:
         print('Error: missing parameter\n\t- please specify a file')
 
