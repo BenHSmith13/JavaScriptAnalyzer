@@ -7,6 +7,7 @@ import sys
 
 import parser
 import tokenizer
+import syntaxer  # Sytaxer, I hardly know her
 
 
 def main():
@@ -16,6 +17,7 @@ def main():
         tokens = tokenizer.tokenize(words)
         for token in tokens:
             print token
+        syntaxer.analyze(tokens)
     else:
         print('Error: missing parameter\n\t- please specify a file')
 
