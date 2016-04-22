@@ -27,7 +27,7 @@ def tokenize(words):
             tokens.append(("END_MARKER", word, word_tup[1]))
         elif word in "()\{\}[]=!+-/*.":
             tokens.append(("PUNCT", word, word_tup[1]))
-        else:
+        elif word not in [" ", "\t", "\v" "\f"]:
             refined_token = refiner_and_lexical_error_parser(("ID", word, word_tup[1]))
             tokens.append(refined_token)
     return tokens
