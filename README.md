@@ -3,19 +3,22 @@
 ###########################
 #    Group Member Names
 ###########################
-  Aaron Light
-  Ben Smith
-  Joseph Ditton
-  Seth Bertlshofer
+  Aaron Light\n
+  Ben Smith\n
+  Joseph Ditton\n
+  Seth Bertlshofer\n
 
 ###############################
 #    software dependencies
 ###############################
-  python > ~2.7.
+  python > ~2.7.\n
   python sys library (import sys)
 
 #######################
 #    project status
 #######################
-  # -- working --
-  parser
+  # -- working --\n
+  parser\n
+  syntaxer\n
+  tokenizer\n
+  
