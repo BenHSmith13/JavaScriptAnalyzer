@@ -1,3 +1,5 @@
+#!/usr/bin/python2.7
+
 # Aaron Light
 # Ben Smith
 # Joseph Ditton
@@ -16,7 +18,7 @@ def main():
         words = parser.build_words(lexemes)
         tokens = tokenizer.tokenize(words)
         for token in tokens:
-            print token
+            print(tokens)
         syntaxer.analyze(tokens)
     else:
         print('Error: missing parameter\n\t- please specify a file')
