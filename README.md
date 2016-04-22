@@ -11,7 +11,7 @@
 ###############################
 #    software dependencies
 ###############################
-  python > 3.5.1 - latest stable release
+  python > ~2.7.
   python sys library (import sys)
 
 #######################
