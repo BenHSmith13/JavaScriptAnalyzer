@@ -55,7 +55,7 @@ def refiner_and_lexical_error_parser(token):
     if token[0] == "IDENT":
         # handle strings
         if "\"" in word or "'" in word:
-            if (word[0] == "\"" and word[-1] == "\"") or (word[0] == "'" and word[-1] == ""):
+            if (word[0] == "\"" and word[-1] == "\"") or (word[0] == "'" and word[-1] == "'"):
                 return "STR_LITERAL", word, token[2]
             else:
                 raise LexicalError("Lexical error at line: " + str(token[2]) + ", invalid string literal: " + word)
