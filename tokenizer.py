@@ -1,4 +1,19 @@
-keywords = ["var", "function", "if", "else", "break", "switch", "case", "return"]
+keywords = [
+    "var", 
+    "function", 
+    "if", 
+    "else", 
+    "break", 
+    "switch", 
+    "case", 
+    "return", 
+    "while", 
+    "for", 
+    "let",
+    "then",
+    "this",
+    "catch"
+    ]
 
 
 # assign each word a part of grammer
