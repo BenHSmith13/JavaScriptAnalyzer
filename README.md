@@ -18,10 +18,11 @@
 #######################
 #    project status
 #######################
+
   # -- working features--<br/>
-  - gets all the lexemes from file<br/>
-  - breaks up into tokens correctly<br/>
-  - should theoretically work even with experimental javascript (ES6 and ES7).
+  gets all the lexemes from file<br/>
+  breaks up into tokens correctly<br/>
+  should theoretically work even with experimental javascript (ES6 and ES7).
 
   # -- partially working features--<br/>
   nothing they should all be working<br/>
