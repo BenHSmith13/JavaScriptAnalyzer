@@ -17,7 +17,55 @@ keywords = [
     "let",
     "then",
     "this",
-    "catch"
+    "catch",
+    "break",
+    "const",
+    "continue",
+    "debugger",
+    "default",
+    "delete",
+    "do",
+    "export",
+    "extends",
+    "finally",
+    "import",
+    "in",
+    "instanceof",
+    "new",
+    "of",
+    "super",
+    "this",
+    "throw",
+    "try",
+    "typeof",
+    "void",
+    "while",
+    "with",
+    "yield",
+    "enum",
+    "implements",
+    "interface",
+    "package",
+    "private",
+    "protected",
+    "public",
+    "static",
+    "await",
+    "abstract",
+    "boolean",
+    "byte",
+    "char",
+    "double",
+    "float",
+    "goto",
+    "int",
+    "long",
+    "native",
+    "short",
+    "synchronized",
+    "throws",
+    "transient",
+    "volatile"
     ]
 
 
@@ -49,7 +97,7 @@ def refiner_and_lexical_error_parser(token):
             if (word[0] == "\"" and word[-1] == "\"") or (word[0] == "'" and word[-1] == "'"):
                 return "LIT", word, token[2]
             else:
-                raise LexicalError("Lexical error at line: " + str(token[2]) + ", invalid string literal: " + word)
+                raise LexicalError("ERROR: Lexical error at line: " + str(token[2]) + ", invalid string literal: " + word)
         # handle numbers, TODO: figure our floating point
         elif word[0] in num_chars:
             check_valid_number(word, token[2])
@@ -70,7 +118,7 @@ def check_valid_number(num, line):
     invalid_chars = "qwertyiop[]\\\{\}|asdfghjkl;:'\"zxcvbn,./<>?!@#$%^&*()-_=+"
     for digit in num:
         if digit in invalid_chars:
-            raise LexicalError("Lexical error at line: " + str(line) + ", invalid character in number: " + num)
+            raise LexicalError("ERROR: Lexical error at line: " + str(line) + ", invalid character in number: " + num)
 
 
 class LexicalError(Exception):
@@ -80,7 +128,7 @@ class LexicalError(Exception):
     def __str__(self):
         return repr(self.value)
 
-        
+
 # Aaron Light - A01185262
 # Ben Smith - A01208763
 # Joseph Ditton - A01249280
