@@ -115,8 +115,6 @@ def refiner_and_lexical_error_parser(token):
     return refined_tokens
 
 def check_valid_ident(word, line):
-    if word in keywords:
-        raise LexicalError("ERROR: Lexical error at line: " + str(line) + ", unexpected use of keyword: " + word)
     if word[0] in "0123456789":
         raise LexicalError("ERROR: Lexical error at line: " + str(line) + ", illegal char: " + word[0] + "in identifier")
     if "@" in word or "#" in word:
