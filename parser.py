@@ -38,8 +38,13 @@ def build_words(chars):
             in_number = False
             add_word_and_separator = True
 
+        if word == "." and not in_number:
+            words.append((word, char[0]))
+            word = ""
+
         if char[2] in separators:
             # if we are inside of a string then treat everything as part of the word.
+
             if open_quote != "":
                 word += char[2]
             #if we have found break and we are not in a string then add that word to the list.
