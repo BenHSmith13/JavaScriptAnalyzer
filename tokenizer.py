@@ -88,7 +88,7 @@ def tokenize(words):
 
 # separate the literals and the identifiers: Built to handle strings, ints, boolean primitive types
 def refiner_and_lexical_error_parser(token):
-    num_chars = "0123456789"
+    num_chars = ".0123456789"
     word = token[1]
     # only get the IDENT types, the others are what they are because their word matches something exactly already
     if token[0] == "ID":
@@ -102,20 +102,28 @@ def refiner_and_lexical_error_parser(token):
         elif word[0] in num_chars:
             check_valid_number(word, token[2])
             return "LIT", word, token[2]
-        # handle booleans
-        elif word == "true" or word == "false":
+        # handle booleans and null
+        elif word in ["true", "false", "null"]:
             return "LIT", word, token[2]
         # put everything else back the way it was because
         else:
+            check_valid_ident(word, token[2])
             return token
     else:
         return token
     #  This return in unreachable
     return refined_tokens
 
+def check_valid_ident(word, line):
+    if word in keywords:
+        raise LexicalError("ERROR: Lexical error at line: " + str(line) + ", unexpected use of keyword: " + word)
+    if word[0] in "0123456789":
+        raise LexicalError("ERROR: Lexical error at line: " + str(line) + ", illegal char: " + word[0] + "in identifier")
+    if "@" in word or "#" in word:
+        raise LexicalError("ERROR: Lexical error at line: " + str(line) + ", unexpected character in: " + word)
 
 def check_valid_number(num, line):
-    invalid_chars = "qwertyiop[]\\\{\}|asdfghjkl;:'\"zxcvbn,./<>?!@#$%^&*()-_=+"
+    invalid_chars = "qwertyiop[]\\\{\}|asdfghjkl;:'\"zxcvbn,/<>?!@#$%^&*()-_=+"
     for digit in num:
         if digit in invalid_chars:
             raise LexicalError("ERROR: Lexical error at line: " + str(line) + ", invalid character in number: " + num)
